@@ -1,7 +1,6 @@
 package com.leonardo.order_api.controller;
 
 import com.leonardo.order_api.entity.Order;
-import com.leonardo.order_api.repository.OrderRepository;
 import com.leonardo.order_api.service.OrderService;
 import org.springframework.web.bind.annotation.*;
 

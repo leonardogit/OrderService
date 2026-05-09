@@ -1,24 +1,24 @@
 # Order API
 
-API REST simples para gerenciamento de pedidos, construída com **Spring Boot**, **Spring Web MVC**, **Spring Data JPA** e **MySQL**.
+A simple REST API for order management built with **Spring Boot**, **Spring Web MVC**, **Spring Data JPA**, and **MySQL**.
 
-## 📌 Visão geral
+## 📌 Overview
 
-Este projeto implementa um serviço de pedidos com arquitetura em camadas:
+This project implements an order service using a layered architecture:
 
-- **Controller**: recebe requisições HTTP e expõe endpoints REST.
-- **Service**: aplica regras de negócio.
-- **Repository**: persiste e consulta dados usando JPA.
-- **Entity**: representa o modelo de dados da tabela no banco.
+- **Controller**: handles HTTP requests and exposes REST endpoints.
+- **Service**: applies business rules.
+- **Repository**: performs persistence and queries using JPA.
+- **Entity**: represents the database table model.
 
-Atualmente, a API oferece:
+Currently, the API provides:
 
-- `POST /orders` para criar um pedido.
-- `GET /orders` para listar todos os pedidos.
+- `POST /orders` to create an order.
+- `GET /orders` to list all orders.
 
 ---
 
-## 🧱 Tecnologias utilizadas
+## 🧱 Tech Stack
 
 - **Java 21**
 - **Spring Boot 4.0.6**
@@ -30,7 +30,7 @@ Atualmente, a API oferece:
 
 ---
 
-## 📂 Estrutura do projeto
+## 📂 Project Structure
 
 ```text
 src/
@@ -56,62 +56,62 @@ src/
 
 ---
 
-## 🗃️ Modelo de dados
+## 🗃️ Data Model
 
-A entidade `Order` é mapeada para a tabela `orders` e possui os campos:
+The `Order` entity is mapped to the `orders` table and contains:
 
-- `id` (`Long`) — chave primária com auto incremento.
-- `customer` (`String`) — nome do cliente.
-- `product` (`String`) — produto comprado.
-- `price` (`Double`) — valor do pedido.
+- `id` (`Long`) — primary key with auto-increment.
+- `customer` (`String`) — customer name.
+- `product` (`String`) — purchased product.
+- `price` (`Double`) — order amount.
 
 ---
 
-## ⚙️ Configuração
+## ⚙️ Configuration
 
-Arquivo: `src/main/resources/application.properties`
+File: `src/main/resources/application.properties`
 
-Configuração atual:
+Current settings:
 
-- Banco: `orderdb`
+- Database: `orderdb`
 - URL: `jdbc:mysql://localhost:3306/orderdb`
-- Usuário: `root`
-- Senha: `root`
+- Username: `root`
+- Password: `root`
 - `spring.jpa.hibernate.ddl-auto=update`
 - `spring.jpa.show-sql=true`
 
-> Observação: para produção, ajuste credenciais e desative logs SQL sensíveis.
+> Note: for production, update credentials and avoid exposing sensitive SQL logs.
 
 ---
 
-## ▶️ Como executar localmente
+## ▶️ Running Locally
 
-### Pré-requisitos
+### Prerequisites
 
-- Java 21 instalado
-- MySQL rodando localmente
-- Banco `orderdb` criado
+- Java 21 installed
+- MySQL running locally
+- `orderdb` database created
 
-### Passos
+### Steps
 
-1. Clone o repositório.
-2. Configure o `application.properties` conforme seu ambiente.
-3. Execute a aplicação:
+1. Clone the repository.
+2. Update `application.properties` according to your environment.
+3. Run the application:
 
 ```bash
 ./gradlew bootRun
 ```
 
-A API iniciará, por padrão, em `http://localhost:8080`.
+By default, the API starts at `http://localhost:8080`.
 
 ---
 
 ## 🔌 Endpoints
 
-### Criar pedido
+### Create Order
 
-- **Método:** `POST`
-- **Rota:** `/orders`
+- **Method:** `POST`
+- **Route:** `/orders`
 - **Body (JSON):**
 
 ```json
@@ -122,34 +122,34 @@ A API iniciará, por padrão, em `http://localhost:8080`.
 }
 ```
 
-- **Regra de negócio:** `price` deve ser maior que zero.
+- **Business rule:** `price` must be greater than zero.
 
-### Listar pedidos
+### List Orders
 
-- **Método:** `GET`
-- **Rota:** `/orders`
-- **Resposta:** lista de pedidos.
-
----
-
-## 🧠 Regra de negócio atual
-
-No `OrderService`, ao criar pedido:
-
-- Se `price <= 0`, a aplicação lança exceção: `Price must be greater than zero`.
-- Caso contrário, o pedido é persistido.
+- **Method:** `GET`
+- **Route:** `/orders`
+- **Response:** list of orders.
 
 ---
 
-## 🧪 Testes
+## 🧠 Current Business Rule
 
-O projeto contém testes unitários para `OrderService` cobrindo:
+In `OrderService`, when creating an order:
 
-- criação com sucesso;
-- listagem de pedidos;
-- falha para preço inválido.
+- If `price <= 0`, the application throws: `Price must be greater than zero`.
+- Otherwise, the order is persisted.
 
-Para executar:
+---
+
+## 🧪 Tests
+
+The project includes unit tests for `OrderService` covering:
+
+- successful creation;
+- order listing;
+- invalid price failure.
+
+Run tests with:
 
 ```bash
 ./gradlew test
@@ -157,20 +157,20 @@ Para executar:
 
 ---
 
-## 🚀 Melhorias sugeridas
+## 🚀 Suggested Improvements
 
-Para evoluir o projeto:
+To evolve the project:
 
-1. Adicionar endpoints de atualização e exclusão (`PUT/PATCH`, `DELETE`).
-2. Implementar tratamento global de erros com `@ControllerAdvice`.
-3. Adotar validação com `@Valid` + Bean Validation.
-4. Criar DTOs para entrada/saída.
-5. Adicionar paginação e filtros na listagem.
-6. Incluir documentação de API com Swagger/OpenAPI.
-7. Externalizar configuração por perfis (`dev`, `test`, `prod`).
+1. Add update and delete endpoints (`PUT/PATCH`, `DELETE`).
+2. Implement global error handling with `@ControllerAdvice`.
+3. Add validation with `@Valid` + Bean Validation.
+4. Introduce DTOs for input/output.
+5. Add pagination and filtering for list operations.
+6. Include API documentation with Swagger/OpenAPI.
+7. Externalize configuration by profile (`dev`, `test`, `prod`).
 
 ---
 
-## 👤 Autor
+## 👤 Author
 
-Projeto base de estudos e prática com Spring Boot.
+Base project for Spring Boot study and practice.
